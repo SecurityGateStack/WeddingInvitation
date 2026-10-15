@@ -1,0 +1,41 @@
+.ticks {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.55rem;
+}
+
+.tick {
+    background: #fffdf9;
+    border: 1px solid var(--gold-soft);
+    border-radius: 2px;
+    padding: 0.85rem 0.2rem 0.7rem;
+    text-align: center;
+}
+
+.tick strong {
+    display: block;
+    color: var(--burgundy);
+    font-size: 1.55rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+}
+
+.tick span {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 400;
+}
+
+.arrived {
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--gold-soft);
+    background: #fffdf9;
+    text-align: center;
+    color: var(--burgundy);
+    font-size: 1.05rem;
+}

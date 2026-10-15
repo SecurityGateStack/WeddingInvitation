@@ -1,0 +1,71 @@
+@implements IDisposable
+
+@if (_remaining == TimeSpan.Zero && DateTimeOffset.Now >= Target)
+{
+    <p class="arrived">روز جشن فرارسیده است.</p>
+}
+else
+{
+    <div class="ticks" aria-hidden="true">
+        <div class="tick">
+            <strong>@PersianDigits.Format(_remaining.Days)</strong>
+            <span>روز</span>
+        </div>
+        <div class="tick">
+            <strong>@PersianDigits.Format(_remaining.Hours, 2)</strong>
+            <span>ساعت</span>
+        </div>
+        <div class="tick">
+            <strong>@PersianDigits.Format(_remaining.Minutes, 2)</strong>
+            <span>دقیقه</span>
+        </div>
+        <div class="tick">
+            <strong>@PersianDigits.Format(_remaining.Seconds, 2)</strong>
+            <span>ثانیه</span>
+        </div>
+    </div>
+}
+
+@code {
+    private readonly PeriodicTimer _timer = new(TimeSpan.FromSeconds(1));
+    private CancellationTokenSource? _cts;
+    private TimeSpan _remaining;
+
+    [Parameter, EditorRequired]
+    public DateTimeOffset Target { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Update();
+        _cts = new CancellationTokenSource();
+        _ = RunAsync(_cts.Token);
+    }
+
+    private async Task RunAsync(CancellationToken token)
+    {
+        try
+        {
+            while (await _timer.WaitForNextTickAsync(token))
+            {
+                Update();
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+    }
+
+    private void Update()
+    {
+        var delta = Target - DateTimeOffset.Now;
+        _remaining = delta > TimeSpan.Zero ? delta : TimeSpan.Zero;
+    }
+
+    public void Dispose()
+    {
+        _cts?.Cancel();
+        _timer.Dispose();
+        _cts?.Dispose();
+    }
+}

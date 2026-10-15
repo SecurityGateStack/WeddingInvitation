@@ -1,0 +1,88 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>دعوت‌نامه @InvitationContent.GroomName و @InvitationContent.BrideName</PageTitle>
+
+<div class="stage">
+    <article class="sheet">
+        <header class="cover">
+            <div class="petals" aria-hidden="true">
+                @foreach (var petal in Petals)
+                {
+                    <span class="petal" style="@petal"></span>
+                }
+            </div>
+
+            <div class="frame">
+                <p class="eyebrow">دعوت‌نامه عروسی</p>
+
+                <div class="seal" aria-hidden="true">
+                    <span>@InvitationContent.GroomInitial</span>
+                    <i></i>
+                    <span>@InvitationContent.BrideInitial</span>
+                </div>
+
+                <h1>
+                    <span class="name">@InvitationContent.GroomName</span>
+                    <span class="join">و</span>
+                    <span class="name delay">@InvitationContent.BrideName</span>
+                </h1>
+
+                <p class="rule" aria-hidden="true"></p>
+                <p class="date">@InvitationContent.CeremonyDateText</p>
+                <p class="opening">@InvitationContent.OpeningLine</p>
+            </div>
+
+            <a class="more" href="#details">
+                <span>جزئیات مراسم</span>
+            </a>
+        </header>
+
+        <section id="details" class="details">
+            <p class="kicker">تا روز جشن</p>
+            <h2>شمارش معکوس</h2>
+            <Countdown Target="InvitationContent.CeremonyAt" />
+
+            <div class="event">
+                <p class="kicker">مراسم</p>
+                <h2>جشن عروسی</h2>
+                <dl>
+                    <div>
+                        <dt>تاریخ</dt>
+                        <dd>@InvitationContent.CeremonyDateText</dd>
+                    </div>
+                    <div>
+                        <dt>ساعت</dt>
+                        <dd>@InvitationContent.CeremonyTimeText</dd>
+                    </div>
+                    <div>
+                        <dt>مکان</dt>
+                        <dd>
+                            <strong>@InvitationContent.VenueName</strong>
+                            @if (!string.IsNullOrWhiteSpace(InvitationContent.VenueAddress))
+                            {
+                                <span>@InvitationContent.VenueAddress</span>
+                            }
+                        </dd>
+                    </div>
+                </dl>
+                <a class="map" href="@InvitationContent.MapUrl" target="_blank" rel="noopener noreferrer">مسیریابی</a>
+            </div>
+
+            <p class="closing">@InvitationContent.ClosingLine</p>
+        </section>
+    </article>
+</div>
+
+@code {
+    private static readonly string[] Petals =
+    [
+        "left:6%; animation-duration:15s; animation-delay:-3s;",
+        "left:18%; animation-duration:18s; animation-delay:-8s; width:8px; height:12px;",
+        "left:34%; animation-duration:13s; animation-delay:-1s;",
+        "left:52%; animation-duration:17s; animation-delay:-11s;",
+        "left:68%; animation-duration:14s; animation-delay:-6s; width:9px; height:13px;",
+        "left:82%; animation-duration:19s; animation-delay:-4s;",
+        "left:91%; animation-duration:16s; animation-delay:-9s;"
+    ];
+}

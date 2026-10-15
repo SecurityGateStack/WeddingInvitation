@@ -1,0 +1,320 @@
+.stage {
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    background:
+        radial-gradient(900px 520px at 50% -8%, rgba(124, 49, 66, 0.45), transparent 62%),
+        var(--night);
+}
+
+.sheet {
+    width: min(100%, 460px);
+    min-height: 100svh;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(166, 132, 86, 0.08), transparent 28%),
+        linear-gradient(180deg, #fffaf4 0%, var(--paper) 32%, var(--paper-deep) 100%);
+    color: var(--ink);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.cover {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.5rem 1.35rem 1.5rem;
+    overflow: hidden;
+}
+
+.petals {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.petal {
+    position: absolute;
+    top: -8%;
+    width: 11px;
+    height: 16px;
+    border-radius: 80% 0 80% 0;
+    background: linear-gradient(135deg, #f3d7c8, #c9a27a);
+    opacity: 0.55;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.frame {
+    position: relative;
+    z-index: 1;
+    margin: 0 0.35rem;
+    padding: 2.4rem 1.15rem 2rem;
+    border: 1px solid var(--gold-soft);
+    text-align: center;
+}
+
+.frame::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(166, 132, 86, 0.28);
+    pointer-events: none;
+}
+
+.eyebrow,
+.kicker {
+    margin: 0;
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+}
+
+.seal {
+    width: 4.6rem;
+    height: 4.6rem;
+    margin: 1.15rem auto 0.4rem;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.28rem;
+    position: relative;
+}
+
+.seal::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px dashed rgba(166, 132, 86, 0.7);
+    border-radius: 50%;
+    animation: spin 22s linear infinite;
+}
+
+.seal span {
+    position: relative;
+    z-index: 1;
+    font-family: "Noto Nastaliq Urdu", "Vazirmatn", serif;
+    font-size: 1.15rem;
+    line-height: 1;
+    color: var(--burgundy);
+}
+
+.seal i {
+    position: relative;
+    z-index: 1;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    transform: rotate(45deg);
+}
+
+h1 {
+    margin: 0.2rem 0 0;
+    font-weight: 400;
+}
+
+.name {
+    display: block;
+    font-family: "Noto Nastaliq Urdu", "Vazirmatn", serif;
+    font-size: clamp(2.7rem, 11vw, 3.7rem);
+    font-weight: 700;
+    line-height: 2.05;
+    color: var(--ink);
+    animation: rise 1.15s ease both;
+}
+
+.name.delay {
+    animation-delay: 0.18s;
+}
+
+.join {
+    display: block;
+    margin-top: -0.35rem;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.4em;
+    animation: rise 1.15s ease 0.08s both;
+}
+
+.rule {
+    width: 4.5rem;
+    height: 1px;
+    margin: 0.85rem auto 0.9rem;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.date {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.opening {
+    margin: 0.85rem auto 0;
+    max-width: 18rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.9;
+}
+
+.more {
+    position: relative;
+    z-index: 1;
+    align-self: center;
+    margin-top: 1.6rem;
+    color: var(--burgundy);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.more::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 2.1rem;
+    margin: 0.45rem auto 0;
+    background: linear-gradient(var(--gold), transparent);
+    animation: drip 1.8s ease-in-out infinite;
+}
+
+.details {
+    padding: 0.5rem 1.45rem 3rem;
+}
+
+.details h2 {
+    margin: 0.35rem 0 1rem;
+    font-family: "Noto Nastaliq Urdu", "Vazirmatn", serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 2;
+}
+
+.event {
+    margin-top: 2.4rem;
+}
+
+.event dl {
+    margin: 0;
+}
+
+.event dl > div {
+    display: grid;
+    grid-template-columns: 4.2rem 1fr;
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(166, 132, 86, 0.28);
+}
+
+.event dt {
+    color: var(--gold);
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.event dd {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+.event dd strong,
+.event dd span {
+    display: block;
+}
+
+.event dd strong {
+    font-weight: 600;
+}
+
+.event dd span {
+    color: var(--muted);
+    font-weight: 300;
+}
+
+.map {
+    display: inline-flex;
+    margin-top: 1.15rem;
+    padding: 0.7rem 1.3rem;
+    border: 1px solid var(--burgundy);
+    color: var(--burgundy);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.map:hover {
+    background: var(--burgundy);
+    color: #fffaf4;
+}
+
+.closing {
+    margin: 2.2rem 0 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.9;
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.55;
+    }
+
+    100% {
+        transform: translateY(108vh) rotate(220deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes drip {
+    0%, 100% {
+        transform: scaleY(0.7);
+        opacity: 0.45;
+        transform-origin: top;
+    }
+
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .petal,
+    .name,
+    .join,
+    .seal::after,
+    .more::after {
+        animation: none;
+    }
+}
