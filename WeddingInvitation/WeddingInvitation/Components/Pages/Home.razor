@@ -3,7 +3,39 @@
 
 <PageTitle>دعوت‌نامه @InvitationContent.GroomName و @InvitationContent.BrideName</PageTitle>
 
-<div class="stage">
+<div class="stage @(_opened ? "is-open" : "is-closed")">
+    @if (!_opened)
+    {
+        <section class="front">
+            <div class="face">
+                <span class="corner top-right" aria-hidden="true"></span>
+                <span class="corner top-left" aria-hidden="true"></span>
+                <span class="corner bottom-right" aria-hidden="true"></span>
+                <span class="corner bottom-left" aria-hidden="true"></span>
+
+                <p class="eyebrow">دعوت‌نامه عروسی</p>
+                <p class="front-names">
+                    <span>@InvitationContent.GroomName</span>
+                    <span class="front-join">و</span>
+                    <span>@InvitationContent.BrideName</span>
+                </p>
+                <p class="rule" aria-hidden="true"></p>
+
+                <button type="button" class="wax" data-open-card @onclick="OpenCard" aria-label="گشودن کارت عروسی">
+                    <span class="wax-face">
+                        <svg viewBox="0 0 64 40" aria-hidden="true">
+                            <circle cx="24" cy="20" r="11" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+                            <circle cx="40" cy="20" r="11" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+                        </svg>
+                        <span>بگشایید</span>
+                    </span>
+                </button>
+                <p class="hint">مُهر را لمس کنید</p>
+            </div>
+        </section>
+    }
+    else
+    {
     <article class="sheet">
         <header class="cover">
             <div class="petals" aria-hidden="true">
@@ -72,9 +104,14 @@
             <p class="closing">@InvitationContent.ClosingLine</p>
         </section>
     </article>
+    }
 </div>
 
 @code {
+    private bool _opened;
+
+    private void OpenCard() => _opened = true;
+
     private static readonly string[] Petals =
     [
         "left:6%; animation-duration:15s; animation-delay:-3s;",
